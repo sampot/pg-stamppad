@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7a2b2b" />
+    <title>戳戳樂</title>
+    <meta
+      name="description"
+      content="戳戳樂——夜市戳洞兌獎。付代幣戳開格子，收集獎品完成一輪。"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫧</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>戳戳樂</h1>
+      <span class="subtitle">夜市懷舊</span>
+      <button id="btn-music" type="button" class="ghost" aria-label="切換聲音">聲音開</button>
+    </header>
+
+    <main class="game">
+      <div class="stats">
+        <span class="stat">代幣 <b id="stat-tokens">8 枚</b></span>
+        <span class="stat">獎品 <b id="stat-collected">0/6</b></span>
+        <span class="stat">已戳 <b id="stat-opened">0/30</b></span>
+      </div>
+
+      <div id="board" class="board" role="group" aria-label="戳板"></div>
+
+      <p id="status" class="status">付一枚代幣戳開一格，集滿 6 個獎品。</p>
+
+      <div class="controls">
+        <button id="btn-new" type="button" class="primary">換一張戳板</button>
+      </div>
+
+      <p id="stats-detail" class="stats-detail">統計｜獎品 0 · 再戳 0 · 銘謝 0</p>
+
+      <p class="legend">
+        <span>🍭🍬🧸 獎品</span>
+        <span>↻ 再戳一次</span>
+        <span>謝 銘謝惠顧</span>
+      </p>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

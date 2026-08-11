@@ -1,0 +1,210 @@
+/* 戳戳樂 — mobile-first：預設窄螢幕，寬螢幕再加寬。 */
+:root {
+  --bg: #7a2b2b;
+  --panel: #8f3a34;
+  --panel-line: #b0534a;
+  --gold: #f9c74f;
+  --fg: #fdf3ee;
+  --muted: #e6b8ae;
+  --prize: #ffd93d;
+  --again: #6bc5ff;
+  --bust: #d2d2d2;
+  --disabled: rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+/* ---------- 頂欄 ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(122, 43, 43, 0.92);
+  backdrop-filter: blur(4px);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.ghost,
+.primary {
+  font-size: 1rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--panel-line);
+  background: var(--panel);
+  color: var(--fg);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ghost:hover {
+  border-color: var(--gold);
+}
+
+.primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #5a2030;
+  font-weight: 700;
+}
+
+/* ---------- 主區 ---------- */
+.game {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0.9rem 0.9rem 2rem;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.stat b {
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 戳板 ---------- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 6), 1fr);
+  gap: clamp(6px, 2vw, 12px);
+  margin-bottom: 1rem;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  border: 2px solid var(--panel-line);
+  background: var(--panel);
+  color: var(--fg);
+  font-size: clamp(1rem, 5vw, 1.6rem);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  padding: 0;
+}
+
+.cell:disabled {
+  cursor: not-allowed;
+  background: var(--disabled);
+}
+
+.cell.opened.prize {
+  background: rgba(255, 217, 61, 0.25);
+  border-color: var(--prize);
+  color: var(--prize);
+}
+
+.cell.opened.again {
+  background: rgba(107, 197, 255, 0.2);
+  border-color: var(--again);
+  color: var(--again);
+}
+
+.cell.opened.bust {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: #888;
+  color: var(--bust);
+}
+
+/* ---------- 狀態 ---------- */
+.status {
+  min-height: 1.5em;
+  margin: 0 0 0.9rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.status[data-tone="win"] {
+  color: var(--prize);
+  font-weight: 600;
+}
+
+.status[data-tone="warn"] {
+  color: var(--gold);
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.controls button {
+  flex: 1;
+  max-width: 220px;
+}
+
+.stats-detail {
+  margin: 0 0 0.8rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  justify-content: center;
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 寬螢幕 ---------- */
+@media (min-width: 560px) {
+  .game {
+    padding-top: 1.5rem;
+  }
+
+  .board {
+    gap: 12px;
+  }
+
+  .stats {
+    gap: 0.4rem 1.6rem;
+    font-size: 1rem;
+  }
+}
