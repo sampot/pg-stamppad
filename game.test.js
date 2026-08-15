@@ -34,10 +34,10 @@ describe("generatePool", () => {
     expect(types).toContain("bust");
   });
 
-  it("every prize type is present once by default", () => {
-    const board = generatePool({ cols: 6, rows: 5, rand: lcg(2) }); // default prizePerType 1
+  it("every prize type is present twice by default", () => {
+    const board = generatePool({ cols: 6, rows: 5, rand: lcg(2) }); // default prizePerType 2
     for (const p of PRIZES) {
-      expect(board.filter((r) => r.type === "prize" && r.prize === p).length).toBe(1);
+      expect(board.filter((r) => r.type === "prize" && r.prize === p).length).toBe(2);
     }
   });
 });
@@ -53,8 +53,14 @@ describe("newGame", () => {
     expect(g.over).toBe(false);
   });
 
+  it("default pool has at least as many prizes as the goal", () => {
+    const g = newGame();
+    const prizes = g.board.filter((r) => r.type === "prize").length;
+    expect(prizes).toBeGreaterThanOrEqual(g.goal);
+  });
+
   it("honors custom tokens & goal", () => {
-    const g = newGame({ tokens: 3, goal: 4 });
+    const g = newGame({ tokens: 3, goal: 4, prizePerType: 2 });
     expect(g.tokens).toBe(3);
     expect(g.goal).toBe(4);
   });

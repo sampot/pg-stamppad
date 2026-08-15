@@ -23,8 +23,8 @@ export function shuffle(arr, rand = Math.random) {
  * 建立一個格子池：dozens 種獎品各若干、再戳一次、銘謝惠顧。
  * @param {object} opts
  *   cols, rows           板面格數（默認 6×5）
- *   prizePerType         每種獎品數量（默當 1）
- *   againCount           再戳一次數量（默當 3）
+ *   prizePerType         每種獎品數量（默認 2；三種獎 → 共 6，可達預設 goal）
+ *   againCount           再戳一次數量（默認 4）
  *   bustFill             銘謝惠顧填滿剩餘格
  * 回傳一個「已洗牌」的格子結果陣列（每格 one of: {type:'prize',prize:'🍭'} / {type:'again'} / {type:'bust'}）。
  */
@@ -32,8 +32,8 @@ export function generatePool(opts = {}) {
   const cols = opts.cols ?? 6;
   const rows = opts.rows ?? 5;
   const total = cols * rows;
-  const prizePerType = opts.prizePerType ?? 1;
-  const againCount = opts.againCount ?? 3;
+  const prizePerType = opts.prizePerType ?? 2;
+  const againCount = opts.againCount ?? 4;
   const rand = opts.rand ?? Math.random;
 
   const pool = [];
@@ -53,8 +53,8 @@ export function generatePool(opts = {}) {
  *   cols, rows      板面
  *   tokens          起始代幣
  *   goal            完成目標（收集到的獎品數；預設 6）
- *   prizePerType    每種獎品數量（配池用；預設 1）
- *   againCount      再戳一次數量
+ *   prizePerType    每種獎品數量（配池用；預設 2）
+ *   againCount      再戳一次數量（預設 4）
  * 回傳 state：{ board(格子結果), cells(每格狀態), tokens, goal, collected, over, stats }
  */
 export function newGame(opts = {}) {
