@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "rev": "95a7add",
+  "files": [
+    "app.js",
+    "assets/sfx/click1.ogg",
+    "assets/sfx/switch1.ogg",
+    "assets/ui/button_round_gloss.png",
+    "assets/ui/button_square_gradient.png",
+    "audio.js",
+    "functions.js",
+    "game.js",
+    "index.html",
+    "styles.css"
+  ]
+}
